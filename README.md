@@ -30,9 +30,10 @@ The Ruby Style Guide.
 
 ## 1. Организация исходного кода
 
+1.
   1. <a name="utf-8"></a> Используйте кодировку `UTF-8`.<sup>[[ссылка](#utf-8)]</sup>
 
-* <a name="spaces-indentation"></a> Используйте два **пробела** на уровень
+1.2. <a name="spaces-indentation"></a> Используйте два пробела на уровень
   отступа (т.е. мягкую табуляцию). Никаких знаков табуляции.
   <sup>[[ссылка](#spaces-indentation)]</sup>
 
@@ -48,40 +49,26 @@ The Ruby Style Guide.
   end
   ```
 
-* <a name="crlf"></a>
-  Use Unix-style line endings. (*BSD/Solaris/Linux/OS X users are covered by
-  default, Windows users have to be extra careful.)
-<sup>[[link](#crlf)]</sup>
-
-  * If you're using Git you might want to add the following
-    configuration setting to protect your project from Windows line
-    endings creeping in:
-
-    ```bash
-    $ git config --global core.autocrlf true
-    ```
-
-* <a name="no-semicolon"></a>
-  Don't use `;` to separate statements and expressions. As a corollary - use one
-  expression per line.
-<sup>[[link](#no-semicolon)]</sup>
+1.3 <a name="no-semicolon"></a> Не используйте `;` для разделения инструкций и
+  выражений. Отсюда следует, что каждая инструкция должна занимать свою отдельную строку.
+  <sup>[[ссылка](#no-semicolon)]</sup>
 
   ```Ruby
-  # bad
-  puts 'foobar'; # superfluous semicolon
+  # плохо
+  puts 'foobar'; # лишняя точка с запятой
 
   puts 'foo'; puts 'bar' # two expressions on the same line
 
-  # good
+  # хорошо
   puts 'foobar'
 
   puts 'foo'
   puts 'bar'
 
-  puts 'foo', 'bar' # this applies to puts in particular
+  puts 'foo', 'bar' # частное правило - аргументы puts можно перечислять через запятую
   ```
 
-* <a name="single-line-classes"></a>
+1.4 <a name="single-line-classes"></a>
   Prefer a single-line format for class definitions with no body.
 <sup>[[link](#single-line-classes)]</sup>
 
