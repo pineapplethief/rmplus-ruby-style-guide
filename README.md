@@ -1,31 +1,15 @@
-# Prelude
+# Вступление
 
-> Role models are important. <br/>
-> -- Officer Alex J. Murphy / RoboCop
+Это руководство по оформлению кода на языке программирования Ruby и фреймворке
+Ruby On Rails 3 в контексте разработки плагинов для системы управления проектами
+Redmine, разработанное в компании [RM+](http://www.rmplus.pro).
 
-One thing has always bothered me as a Ruby developer - Python developers have a
-great programming style reference
-([PEP-8](http://www.python.org/dev/peps/pep-0008/)) and we never got an official
-guide, documenting Ruby coding style and best practices. And I do believe that
-style matters. I also believe that a great hacker community, such as Ruby has,
-should be quite capable of producing this coveted document.
+В качестве основы для руководства были взяты [«The Ruby Style Guide»](https://github.com/bbatsov/ruby-style-guide)
+и [дополнение к нему для Rails](https://github.com/bbatsov/rails-style-guide),
+а [также русский перевод](https://github.com/arbox/ruby-style-guide/blob/master/README-ruRU.md)
+The Ruby Style Guide.
 
-This guide started its life as our internal company Ruby coding guidelines
-(written by yours truly). At some point I decided that the work I was doing
-might be interesting to members of the Ruby community in general and that the
-world had little need for another internal company guideline. But the world
-could certainly benefit from a community-driven and community-sanctioned set of
-practices, idioms and style prescriptions for Ruby programming.
-
-Since the inception of the guide I've received a lot of feedback from members of
-the exceptional Ruby community around the world. Thanks for all the suggestions
-and the support! Together we can make a resource beneficial to each and every
-Ruby developer out there.
-
-By the way, if you're into Rails you might want to check out the complementary
-[Ruby on Rails 3 & 4 Style Guide](https://github.com/bbatsov/rails-style-guide).
-
-# The Ruby Style Guide
+# Руби: руководство по стилю
 
 This Ruby style guide recommends best practices so that real-world Ruby
 programmers can write code that can be maintained by other real-world Ruby
