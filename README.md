@@ -1,3 +1,5 @@
+# Ruby: руководство по стилю RM+
+
 # Вступление
 
 Это руководство по оформлению кода на языке программирования Ruby и фреймворке
@@ -9,93 +11,38 @@ Redmine, разработанное в компании [RM+](http://www.rmplus.
 а [также русский перевод](https://github.com/arbox/ruby-style-guide/blob/master/README-ruRU.md)
 The Ruby Style Guide.
 
-# Руби: руководство по стилю
+## Оглавление
 
-This Ruby style guide recommends best practices so that real-world Ruby
-programmers can write code that can be maintained by other real-world Ruby
-programmers. A style guide that reflects real-world usage gets used, and a style
-guide that holds to an ideal that has been rejected by the people it is supposed
-to help risks not getting used at all &ndash; no matter how good it is.
+* [Организация исходного кода](#Организация-исходного-кода)
+* [Синтаксис](#Синтаксис)
+* [Наименование](#Hаименование)
+* [Комментарии](#Комментарии)
+  * [Пометки в комментариях](#Пометки-в-комментариях)
+* [Классы и модули](#Классы-и-модули)
+* [Исключения](#Исключения)
+* [Коллекции](#Коллекции)
+* [Строки](#Строки)
+* [Регулярные выражения](#Регулярные-выражения)
+* [Процентные литералы](#Процентные-литералы)
+* [Метапрограммирование](#Метапрограммирование)
+* [Разное](#Разное)
+* [Инструментарий](#Инструментарий)
 
-The guide is separated into several sections of related rules. I've tried to add
-the rationale behind the rules (if it's omitted I've assumed it's pretty
-obvious).
+## Организация исходного кода
 
-I didn't come up with all the rules out of nowhere - they are mostly based on my
-extensive career as a professional software engineer, feedback and suggestions
-from members of the Ruby community and various highly regarded Ruby programming
-resources, such as ["Programming Ruby
-1.9"](http://pragprog.com/book/ruby4/programming-ruby-1-9-2-0) and ["The Ruby
-Programming
-Language"](http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177).
+* <a name="utf-8"></a> Используйте кодировку `UTF-8`.<sup>[[ссылка](#utf-8)]</sup>
 
-There are some areas in which there is no clear consensus in the Ruby community
-regarding a particular style (like string literal quoting, spacing inside hash
-literals, dot position in multi-line method chaining, etc.). In such scenarios
-all popular styles are acknowledged and it's up to you to pick one and apply it
-consistently.
-
-The guide is still a work in progress - some rules are lacking examples, some
-rules don't have examples that illustrate them clearly enough. In due time these
-issues will be addressed - just keep them in mind for now.
-
-You can generate a PDF or an HTML copy of this guide using
-[Transmuter](https://github.com/TechnoGate/transmuter).
-
-[RuboCop](https://github.com/bbatsov/rubocop) is a code analyzer, based on this
-style guide.
-
-Translations of the guide are available in the following languages:
-
-* [Chinese Simplified](https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md)
-* [Chinese Traditional](https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhTW.md)
-* [French](https://github.com/porecreat/ruby-style-guide/blob/master/README-frFR.md)
-* [Japanese](https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md)
-* [Portuguese](https://github.com/rubensmabueno/ruby-style-guide/blob/master/README-PT-BR.md)
-* [Russian](https://github.com/arbox/ruby-style-guide/blob/master/README-ruRU.md)
-* [Spanish](https://github.com/alemohamad/ruby-style-guide/blob/master/README-esLA.md)
-* [Vietnamese](https://github.com/scrum2b/ruby-style-guide/blob/master/README-viVN.md)
-* [Korean](https://github.com/dalzony/ruby-style-guide/blob/master/README-koKO.md)
-
-## Table of Contents
-
-* [Source Code Layout](#source-code-layout)
-* [Syntax](#syntax)
-* [Naming](#naming)
-* [Comments](#comments)
-  * [Comment Annotations](#comment-annotations)
-* [Classes](#classes--modules)
-* [Exceptions](#exceptions)
-* [Collections](#collections)
-* [Strings](#strings)
-* [Regular Expressions](#regular-expressions)
-* [Percent Literals](#percent-literals)
-* [Metaprogramming](#metaprogramming)
-* [Misc](#misc)
-* [Tools](#tools)
-
-## Source Code Layout
-
-> Nearly everybody is convinced that every style but their own is
-> ugly and unreadable. Leave out the "but their own" and they're
-> probably right... <br/>
-> -- Jerry Coffin (on indentation)
-
-* <a name="utf-8"></a>
-  Use `UTF-8` as the source file encoding.
-<sup>[[link](#utf-8)]</sup>
-
-* <a name="spaces-indentation"></a>
-  Use two **spaces** per indentation level (aka soft tabs). No hard tabs.
-<sup>[[link](#spaces-indentation)]</sup>
+* <a name="spaces-indentation"></a> Используйте два **пробела** на уровень
+  отступа (т.е. мягкую табуляцию). Никаких знаков табуляции.
+  <sup>[[ссылка](#spaces-indentation)]</sup>
 
   ```Ruby
-  # bad - four spaces
+  # плохо (четыре пробела)
   def some_method
       do_something
   end
 
-  # good
+  # хорошо
   def some_method
     do_something
   end
