@@ -30,8 +30,7 @@ The Ruby Style Guide.
 
 ## 1. Организация исходного кода
 
-1.
-  1. <a name="utf-8"></a> Используйте кодировку `UTF-8`.<sup>[[ссылка](#utf-8)]</sup>
+1.1. <a name="utf-8"></a> Используйте кодировку `UTF-8`.<sup>[[ссылка](#utf-8)]</sup>
 
 1.2. <a name="spaces-indentation"></a> Используйте два пробела на уровень
   отступа (т.е. мягкую табуляцию). Никаких знаков табуляции.
@@ -49,7 +48,7 @@ The Ruby Style Guide.
   end
   ```
 
-1.3 <a name="no-semicolon"></a> Не используйте `;` для разделения инструкций и
+1.3. <a name="no-semicolon"></a> Не используйте `;` для разделения инструкций и
   выражений. Отсюда следует, что каждая инструкция должна занимать свою отдельную строку.
   <sup>[[ссылка](#no-semicolon)]</sup>
 
@@ -68,7 +67,7 @@ The Ruby Style Guide.
   puts 'foo', 'bar' # частное правило - аргументы puts можно перечислять через запятую
   ```
 
-1.4 <a name="no-single-line-methods"></a>
+1.4. <a name="no-single-line-methods"></a>
   Избегайте методов в одну строку, за исключением пустых методов.
 <sup>[[link](#no-single-line-methods)]</sup>
 
@@ -94,10 +93,8 @@ The Ruby Style Guide.
   def no_op; end
   ```
 
-1.5 <a name="spaces-operators"></a> Вставляйте пробелы вокруг операторов, после
+1.5. <a name="spaces-operators"></a> Вставляйте пробелы вокруг операторов, после
   запятых, двоеточий и точек с запятыми,  вокруг `{` и перед `}`.
-  Пробелы (по большей части) игнорируются интерпретатором Руби, но
-  их правильное использование является ключом к написанию легко читаемого кода.
   <sup>[[ссылка](#spaces-operators)]</sup>
 
   ```Ruby
@@ -107,85 +104,77 @@ The Ruby Style Guide.
   class FooError < StandardError; end
   ```
 
-  The only exception, regarding operators, is the exponent operator:
+  Единственным исключением для операторов является оператор возведения в степень:
 
   ```Ruby
-  # bad
+  # плохо
   e = M * c ** 2
 
-  # good
+  # хорошо
   e = M * c**2
   ```
 
-  `{` and `}` deserve a bit of clarification, since they are used
-  for block and hash literals, as well as embedded expressions in
-  strings. For hash literals two styles are considered acceptable.
+  Относительно `{` и `}`:
+
+  Для литерала хеша популярны два стиля:
 
   ```Ruby
-  # good - space after { and before }
+  # хорошо (пробел после { и до })
   { one: 1, two: 2 }
 
-  # good - no space after { and before }
+  # хорошо (пробелы отсутствуют после { и перед })
   {one: 1, two: 2}
   ```
 
-  The first variant is slightly more readable (and arguably more
-  popular in the Ruby community in general). The second variant has
-  the advantage of adding visual difference between block and hash
-  literals. Whichever one you pick - apply it consistently.
+  Первый вариант несколько проще для чтения.
+  Второй вариант обладает тем преемуществом, что создается видимое различие
+  между блоками и хэшами, когда хэш использутся в блоке.
 
-  As far as embedded expressions go, there are also two acceptable
-  options:
+  В случае включаемых в строки выражений рекомендуется не отбивать фигурные скобки пробелами:
 
   ```Ruby
-  # good - no spaces
+  # хорошо
   "string#{expr}"
 
-  # ok - arguably more readable
+  # плохо
   "string#{ expr }"
   ```
 
-  The first style is extremely more popular and you're generally
-  advised to stick with it. The second, on the other hand, is
-  (arguably) a bit more readable. As with hashes - pick one style
-  and apply it consistently.
-
-* <a name="no-spaces-braces"></a>
-  No spaces after `(`, `[` or before `]`, `)`.
-<sup>[[link](#no-spaces-braces)]</sup>
+1.6. <a name="no-spaces-braces"></a> Не используйте пробел после `(`, `[` или перед `]`, `)`.
+  <sup>[[ссылка](#no-spaces-braces)]</sup>
 
   ```Ruby
   some(arg).other
   [1, 2, 3].size
   ```
 
-* <a name="no-space-bang"></a>
-  No space after `!`.
-<sup>[[link](#no-space-bang)]</sup>
+1.7 <a name="no-space-bang"></a> Не используйте пробел после `!`.
+  <sup>[[ссылка](#no-space-bang)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   ! something
 
-  # good
+  # хорошо
   !something
   ```
 
-* <a name="no-space-inside-range-literals"></a>
-  No space inside range literals.
-<sup>[[link](#no-space-inside-range-literals)]</sup>
+1.8 <a name="no-space-inside-range-literals"></a>Записывайте литералы диапазонов
+  без пробелов.
+  <sup>[[link](#no-space-inside-range-literals)]</sup>
 
     ```Ruby
-    # bad
+    # плохо
     1 .. 3
     'a' ... 'z'
 
-    # good
+    # хорошо
     1..3
     'a'..'z'
     ```
 
 * <a name="indent-when-to-case"></a>
+  `Обсудить с Василем`
   Indent `when` as deep as `case`. I know that many would disagree
   with this one, but it's the style established in both "The Ruby
   Programming Language" and "Programming Ruby".
