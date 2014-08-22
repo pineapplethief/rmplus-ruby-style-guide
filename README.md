@@ -263,10 +263,9 @@ The Ruby Style Guide.
     end
   ```
 
-* <a name="empty-lines-between-methods"></a>
-  Use empty lines between method definitions and also to break up a method
-  into logical paragraphs internally.
-<sup>[[link](#empty-lines-between-methods)]</sup>
+* <a name="empty-lines-between-methods"></a> Используйте пустые строки для отбивки методов друг от друга и
+  выделения логических частей кода.
+  <sup>[[ссылка](#empty-lines-between-methods)]</sup>
 
   ```Ruby
   def some_method
@@ -282,114 +281,91 @@ The Ruby Style Guide.
   end
   ```
 
-* <a name="no-trailing-params-comma"></a>
-  Avoid comma after the last parameter in a method call, especially when the
-  parameters are not on separate lines.
-<sup>[[link](#no-trailing-params-comma)]</sup>
+* <a name="no-trailing-params-comma"></a> Не ставьте запятую после последнего параметра в вызове метода.
+  <sup>[[ссылка](#no-trailing-params-comma)]</sup>
+
 
   ```Ruby
-  # bad - easier to move/add/remove parameters, but still not preferred
+  # плохо
   some_method(
                size,
                count,
                color,
              )
 
-  # bad
+  # плохо
   some_method(size, count, color, )
 
-  # good
+  # хорошо
   some_method(size, count, color)
   ```
 
 * <a name="spaces-around-equals"></a>
-  Use spaces around the `=` operator when assigning default values to method
-  parameters:
-<sup>[[link](#spaces-around-equals)]</sup>
+  `Обсудить с Василем`
+  Вставляйте пробелы вокруг оператора присваивания `=`, когда
+  назначаете параметрам метода значения по умолчанию:
+  <sup>[[ссылка](#spaces-around-equals)]</sup>
+
 
   ```Ruby
-  # bad
+  # плохо
   def some_method(arg1=:default, arg2=nil, arg3=[])
     # do something...
   end
 
-  # good
+  # хорошо
   def some_method(arg1 = :default, arg2 = nil, arg3 = [])
     # do something...
   end
   ```
 
-  While several Ruby books suggest the first style, the second is much more
-  prominent in practice (and arguably a bit more readable).
-
 * <a name="no-trailing-backslash"></a>
-  Avoid line continuation `\` where not required. In practice, avoid using
-  line continuations for anything but string concatenation.
-<sup>[[link](#no-trailing-backslash)]</sup>
+  Не используйте символ продления строки кода `\` только при конкатенации длинных строк.
+  строк.
+  <sup>[[ссылка](#no-trailing-backslash)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   result = 1 - \
            2
 
-  # good (but still ugly as hell)
+  # плохо
   result = 1 \
            - 2
 
+  # хорошо
   long_string = 'First part of the long string' \
                 ' and second part of the long string'
   ```
 
 * <a name="consistent-multi-line-chains"></a>
-    Adopt a consistent multi-line method chaining style. There are two
-    popular styles in the Ruby community, both of which are considered
-    good - leading `.` (Option A) and trailing `.` (Option B).
-<sup>[[link](#consistent-multi-line-chains)]</sup>
-
-  * **(Option A)** When continuing a chained method invocation on
-    another line keep the `.` on the second line.
+  Используйте единый стиль многострочных цепочек
+  вызова методов: точка перед вызовом метода в начале строки.
+  <sup>[[ссылка](#consistent-multi-line-chains)]</sup>
 
     ```Ruby
-    # bad - need to consult first line to understand second line
+    # плохо - нужно посмотреть на предыдущую строку, чтобы понять
+    # смысл последующей
     one.two.three.
       four
 
-    # good - it's immediately clear what's going on the second line
+    # хорошо - сразу ясно, что происходит во второй строке
     one.two.three
       .four
     ```
 
-  * **(Option B)** When continuing a chained method invocation on another line,
-    include the `.` on the first line to indicate that the
-    expression continues.
-
-    ```Ruby
-    # bad - need to read ahead to the second line to know that the chain continues
-    one.two.three
-      .four
-
-    # good - it's immediately clear that the expression continues beyond the first line
-    one.two.three.
-      four
-    ```
-
-  A discussion on the merits of both alternative styles can be found
-  [here](https://github.com/bbatsov/ruby-style-guide/pull/176).
-
-* <a name="no-double-indent"></a>
-    Align the parameters of a method call if they span more than one
-    line. When aligning parameters is not appropriate due to line-length
-    constraints, single indent for the lines after the first is also
-    acceptable.
-<sup>[[link](#no-double-indent)]</sup>
+* <a name="no-double-indent"></a> Выравнивайте параметры вызова метода, если
+  вызов занимает более одной строки. Если выравнивание невозможно из-за
+  ограничений на длину строки, то используйте одинарный отступ.
+  <sup>[[ссылка](#no-double-indent)]</sup>
 
   ```Ruby
-  # starting point (line is too long)
+  # первоначальный вариант (строка слишком длинная)
   def send_mail(source)
     Mailer.deliver(to: 'bob@example.com', from: 'us@example.com', subject: 'Important message', body: source.text)
   end
 
-  # bad (double indent)
+  # плохо (двойной отступ)
   def send_mail(source)
     Mailer.deliver(
         to: 'bob@example.com',
@@ -398,7 +374,7 @@ The Ruby Style Guide.
         body: source.text)
   end
 
-  # good
+  # хорошо
   def send_mail(source)
     Mailer.deliver(to: 'bob@example.com',
                    from: 'us@example.com',
@@ -406,7 +382,7 @@ The Ruby Style Guide.
                    body: source.text)
   end
 
-  # good (normal indent)
+  # хорошо (одинарный отступ)
   def send_mail(source)
     Mailer.deliver(
       to: 'bob@example.com',
@@ -418,86 +394,91 @@ The Ruby Style Guide.
   ```
 
 * <a name="align-multiline-arrays"></a>
-  Align the elements of array literals spanning multiple lines.
-<sup>[[link](#align-multiline-arrays)]</sup>
+  Выравнивайте элементы литералов массива,
+  если они занимают несколько строк.
+  <sup>[[ссылка](#align-multiline-arrays)]</sup>
 
   ```Ruby
-  # bad - single indent
+  # плохо
   menu_item = ['Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
     'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
 
-  # good
+  # хорошо
   menu_item = [
     'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
     'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam'
   ]
 
-  # good
+  # хорошо
   menu_item =
     ['Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
      'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
+
+  # хорошо
+  menu_item = ['Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam',
+               'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
   ```
 
-* <a name="underscores-in-numerics"></a>
-  Add underscores to large numeric literals to improve their readability.
-<sup>[[link](#underscores-in-numerics)]</sup>
+* <a name="underscores-in-numerics"></a> Добавляйте символ подеркивания
+  в большие числовые константы для улучшения их читаемости.
+  <sup>[[ссылка](#underscores-in-numerics)]</sup>
 
   ```Ruby
-  # bad - how many 0s are there?
+  # плохо (Это 1 миллион или 10?)
   num = 1000000
 
-  # good - much easier to parse for the human brain
+  # хорошо (число читается гораздо легче)
   num = 1_000_000
   ```
 
 * <a name="rdoc-conventions"></a>
-    Use RDoc and its conventions for API documentation.  Don't put an
-    empty line between the comment block and the `def`.
-<sup>[[link](#rdoc-conventions)]</sup>
+  Используйте устоявшиеся правила RDoc для описания интерфейсов. Не отделяйте
+  блок комментария от начала определения метода `def` пустой строкой.
+  <sup>[[ссылка](#rdoc-conventions)]</sup>
 
 * <a name="80-character-limits"></a>
-  Limit lines to 80 characters.
-<sup>[[link](#80-character-limits)]</sup>
+  Ограничивайте длину строк 80-ю символами.
+  <sup>[[ссылка](#80-character-limits)]</sup>
 
 * <a name="no-trailing-whitespace"></a>
-  Avoid trailing whitespace.
-<sup>[[link](#no-trailing-whitespace)]</sup>
+  Не оставляйте пробелы в конце строки.
+  <sup>[[ссылка](#no-trailing-whitespace)]</sup>
 
 * <a name="newline-eof"></a>
   End each file with a newline.
 <sup>[[link](#newline-eof)]</sup>
 
 * <a name="no-block-comments"></a>
-    Don't use block comments. They cannot be preceded by whitespace and are not
-    as easy to spot as regular comments.
-<sup>[[link](#no-block-comments)]</sup>
+  Не пользуйтесь блочными комментариями. Их нельзя разместить на необходимом уровне отступа.
+  К тому же они не так читаемы, как обычные.
+  <sup>[[ссылка](#no-block-comments)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   =begin
-  comment line
-  another comment line
+  строка комментария
+  еще одна строка комментария
   =end
 
-  # good
-  # comment line
-  # another comment line
+  # хорошо
+  # строка комментария
+  # другая строка комментария
   ```
 
 ## Syntax
 
 * <a name="double-colons"></a>
-    Use `::` only to reference constants(this includes classes and
-    modules) and constructors (like `Array()` or `Nokogiri::HTML()`).
-    Never use `::` for regular method invocation.
-<sup>[[link](#double-colons)]</sup>
+  Используйте `::` только для обращения к константам (в том числе к классам и модулям)
+  и конструкторам класса (например, `Array()` или `Nokogiri::HTML()`).
+  Никогда не используйте `::` для вызова методов.
+  <sup>[[ссылка](#double-colons)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   SomeClass::some_method
   some_object::some_method
 
-  # good
+  # хорошо
   SomeClass.some_method
   some_object.some_method
   SomeModule::SomeClass::SOME_CONST
@@ -505,118 +486,122 @@ The Ruby Style Guide.
   ```
 
 * <a name="method-parens"></a>
-    Use `def` with parentheses when there are arguments. Omit the
-    parentheses when the method doesn't accept any arguments.
-<sup>[[link](#method-parens)]</sup>
+  `Обсудить с Василем`
+  Используйте `def` со скобками, когда у метода есть аргументы.
+  Опускайте скобки, когда метод не принимает аргументов.
+  <sup>[[ссылка](#method-parens)]</sup>
 
    ```Ruby
-   # bad
+   # плохо
    def some_method()
      # body omitted
    end
 
-   # good
+   # хорошо
    def some_method
      # body omitted
    end
 
-   # bad
+   # плохо
    def some_method_with_arguments arg1, arg2
      # body omitted
    end
 
-   # good
+   # хорошо
    def some_method_with_arguments(arg1, arg2)
      # body omitted
    end
    ```
 
 * <a name="no-for-loops"></a>
-    Never use `for`, unless you know exactly why. Most of the time iterators
-    should be used instead. `for` is implemented in terms of `each` (so
-    you're adding a level of indirection), but with a twist - `for`
-    doesn't introduce a new scope (unlike `each`) and variables defined
-    in its block will be visible outside it.
-<sup>[[link](#no-for-loops)]</sup>
+  Используйте оператор `for` только в случаях, когда
+  вы точно знаете, зачем вы это делаете. В подавляющем большинстве остальных случаев
+  стоит применять итераторы. Оператор `for` реализуется при помощи `each` (таким
+  образом вы добавляете лишний уровень абстракции), но с некоторыми отличиями:
+  внутри for не создается область видимости (в отличии от `each`) и переменные,
+  объявленные в теле `for`, будут видны за пределами блока.
+  <sup>[[ссылка](#no-for-loops)]</sup>
 
   ```Ruby
   arr = [1, 2, 3]
 
-  # bad
+  # плохо
   for elem in arr do
     puts elem
   end
 
-  # note that elem is accessible outside of the for loop
-  elem # => 3
+  # Учтите, elem доступен за пределами цикла
+  elem #=> 3
 
-  # good
+  # хорошо
   arr.each { |elem| puts elem }
 
-  # elem is not accessible outside each's block
-  elem # => NameError: undefined local variable or method `elem'
+  # elem недоступен за пределами блока each
+  elem #=> NameError: undefined local variable or method `elem'
   ```
 
 * <a name="no-then"></a>
-  Never use `then` for multi-line `if/unless`.
-<sup>[[link](#no-then)]</sup>
+  Не используйте `then` для условных операторов `if/unless`, если они не однострочные.
+  <sup>[[ссылка](#no-then)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   if some_condition then
-    # body omitted
+    # некоторое действие
   end
 
-  # good
+  # хорошо
   if some_condition
-    # body omitted
+    # некоторое действие
   end
+
+  # хорошо
+  if simple_condition then return; end
   ```
 
-* <a name="same-line-condition"></a>
-  Always put the condition on the same line as the `if`/`unless` in a
-  multi-line conditional.
-<sup>[[link](#same-line-condition)]</sup>
+* <a name="same-line-condition"></a> Всегда записывайте условие для `if/unless`
+  на той же строке, что и сам оператор `if/then` в многострочном условии.
+  <sup>[[ссылка](#same-line-condition)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   if
     some_condition
     do_something
     do_something_else
   end
 
-  # good
+  # хорошо
   if some_condition
     do_something
     do_something_else
   end
   ```
 
-* <a name="ternary-operator"></a>
-  Favor the ternary operator(`?:`) over `if/then/else/end` constructs.
-  It's more common and obviously more concise.
-<sup>[[link](#ternary-operator)]</sup>
+* <a name="ternary-operator"></a> Предпочитайте тернарный оператор (`?:`)
+  однострочным конструкциям с `if/then/else/end`, он короче.
+  <sup>[[ссылка](#ternary-operator)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   result = if some_condition then something else something_else end
 
-  # good
+  # хорошо
   result = some_condition ? something : something_else
   ```
 
 * <a name="no-nested-ternary"></a>
-  Use one expression per branch in a ternary operator. This
-  also means that ternary operators must not be nested. Prefer
-  `if/else` constructs in these cases.
-<sup>[[link](#no-nested-ternary)]</sup>
+  Используйте только одно выражение в каждой
+  ветви тернарного оператора. Отсюда следует, что лучше избегать вложенных
+  тернарных операторов. При возникновении такой необходимости применяйте
+  конструкции с `if/else`.
+  <sup>[[ссылка](#no-nested-ternary)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   some_condition ? (nested_condition ? nested_something : nested_something_else) : something_else
 
-  # good
+  # хорошо
   if some_condition
     nested_condition ? nested_something : nested_something_else
   else
@@ -624,37 +609,19 @@ The Ruby Style Guide.
   end
   ```
 
-* <a name="no-1.8-if-syntax"></a>
-  Never use `if x: ...` - as of Ruby 1.9 it has been removed. Use the ternary
-  operator instead.
-<sup>[[link](#no-1.8-if-syntax)]</sup>
-
-  ```Ruby
-  # bad
-  result = if some_condition: something else something_else end
-
-  # good
-  result = some_condition ? something : something_else
-  ```
-
-* <a name="no-semicolon-ifs"></a>
-  Never use `if x; ...`. Use the ternary operator instead.
-<sup>[[link](#no-semicolon-ifs)]</sup>
-
 * <a name="use-if-case-returns"></a>
-  Leverage the fact that `if` and `case` are expressions which return a
-  result.
-<sup>[[link](#use-if-case-returns)]</sup>
+  Не забывайте, `if` и `case` являются выражениями, и возвращают результат.
+  <sup>[[ссылка](#use-if-case-returns)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   if condition
     result = x
   else
     result = y
   end
 
-  # good
+  # хорошо
   result =
     if condition
       x
@@ -663,109 +630,104 @@ The Ruby Style Guide.
     end
   ```
 
-* <a name="one-line-cases"></a>
-  Use `when x then ...` for one-line cases. The alternative syntax `when x:
-  ...` has been removed as of Ruby 1.9.
-<sup>[[link](#one-line-cases)]</sup>
-
-* <a name="no-when-semicolons"></a>
-  Never use `when x; ...`. See the previous rule.
-<sup>[[link](#no-when-semicolons)]</sup>
-
 * <a name="bang-not-not"></a>
-  Use `!` instead of `not`.
-<sup>[[link](#bang-not-not)]</sup>
+  Используйте `!` вместо `not`.
+  <sup>[[ссылка](#bang-not-not)]</sup>
 
   ```Ruby
-  # bad - braces are required because of op precedence
+  # плохо (необходимы скобки из-за неоднозначности приоритетов операторов)
   x = (not something)
 
-  # good
+  # хорошо
   x = !something
   ```
 
 * <a name="no-bang-bang"></a>
-  Avoid the use of `!!`.
-<sup>[[link](#no-bang-bang)]</sup>
+  Не используйте `!!`.
+  <sup>[[ссылка](#no-bang-bang)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   x = 'test'
-  # obscure nil check
+  # неявная проверка на nil
   if !!x
-    # body omitted
+    # некоторое выражение
   end
 
   x = false
-  # double negation is useless on booleans
+  # двойное отрицание бессмысленно для булевых значений
   !!x # => false
 
-  # good
+  # хорошо
   x = 'test'
   unless x.nil?
-    # body omitted
+    # некоторое выражение
   end
   ```
 
 * <a name="no-and-or-or"></a>
-  The `and` and `or` keywords are banned. It's just not worth it. Always use
-  `&&` and `||` instead.
-<sup>[[link](#no-and-or-or)]</sup>
+  Не используйте ключевые слова `and` и `or` в условиях, т.к. они отличаются по
+  приоритету от '&&' и '||'.
+  Всегда используйте `&&` и `||`.
+  <sup>[[ссылка](#no-and-or-or)]</sup>
 
   ```Ruby
-  # bad
-  # boolean expression
+  # плохо
+
+  # булево выражение
   if some_condition and some_other_condition
     do_something
   end
 
-  # control flow
+  # управление потоком исполнения
   document.saved? or document.save!
 
-  # good
-  # boolean expression
+
+
+  # хорошо
+
+  # булево выражение
   if some_condition && some_other_condition
     do_something
   end
 
-  # control flow
+  # управление потоком исполнения
   document.saved? || document.save!
   ```
 
 * <a name="no-multiline-ternary"></a>
-  Avoid multi-line `?:` (the ternary operator); use `if/unless` instead.
-<sup>[[link](#no-multiline-ternary)]</sup>
+  Избегайте многострочных тернарных операторов `?:`. Используйте вместо них `if/unless`.
+  <sup>[[ссылка](#no-multiline-ternary)]</sup>
 
 * <a name="if-as-a-modifier"></a>
-  Favor modifier `if/unless` usage when you have a single-line body. Another
-  good alternative is the usage of control flow `&&/||`.
-<sup>[[link](#if-as-a-modifier)]</sup>
+  Для однострочных выражений по возможности используйте `if/unless` в форме модификатора.
+  Другим хорошим вариантом являются операторы управления потоком исполнения `&&/||`.
+  <sup>[[ссылка](#if-as-a-modifier)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   if some_condition
     do_something
   end
 
-  # good
+  # хорошо
   do_something if some_condition
 
-  # another good option
+  # еще хороший вариант
   some_condition && do_something
   ```
 
 * <a name="no-multiline-if-modifiers"></a>
-  Avoid modifier `if/unless` usage at the end of a non-trivial multi-line
-  block.
-<sup>[[link](#no-multiline-if-modifiers)]</sup>
+  Избегайте `if/unless` в конце нетривиального многострочного блока.
+  <sup>[[ссылка](#no-multiline-if-modifiers)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   10.times do
     # multi-line body omitted
   end if some_condition
 
-  # good
+  # хорошо
   if some_condition
     10.times do
       # multi-line body omitted
@@ -774,36 +736,38 @@ The Ruby Style Guide.
   ```
 
 * <a name="unless-for-negatives"></a>
-  Favor `unless` over `if` for negative conditions (or control flow `||`).
-<sup>[[link](#unless-for-negatives)]</sup>
+  Используйте `unless` для простых условий с отрицанием и `if` c `!` для сложных.
+  Используйте `||` для управления потоком исполнения.
+  <sup>[[ссылка](#unless-for-negatives)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   do_something if !some_condition
 
-  # bad
+  # плохо
   do_something if not some_condition
 
-  # good
+  # хорошо
   do_something unless some_condition
 
-  # another good option
+  # тоже хорошо
   some_condition || do_something
   ```
 
 * <a name="no-else-with-unless"></a>
-  Never use `unless` with `else`. Rewrite these with the positive case first.
-<sup>[[link](#no-else-with-unless)]</sup>
+  Не используйте `unless` вместе с `else`.
+  Перепишите такие выражение с положительной проверкой.
+  <sup>[[ссылка](#no-else-with-unless)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   unless success?
     puts 'failure'
   else
     puts 'success'
   end
 
-  # good
+  # хорошо
   if success?
     puts 'success'
   else
@@ -812,123 +776,84 @@ The Ruby Style Guide.
   ```
 
 * <a name="no-parens-if"></a>
-  Don't use parentheses around the condition of an `if/unless/while/until`.
-<sup>[[link](#no-parens-if)]</sup>
+  `Обсудить с Василем`
+  Не используйте скобки для ограничения условных выражений
+  в `if/unless/while/until`.<sup>[[ссылка](#no-parens-if)]
+  </sup>
 
   ```Ruby
-  # bad
+  # плохо
   if (x > 10)
-    # body omitted
+    # код опущен для краткости
   end
 
-  # good
+  # хорошо
   if x > 10
-    # body omitted
+    # код опущен для краткости
   end
   ```
 
 * <a name="no-multiline-while-do"></a>
-  Never use `while/until condition do` for multi-line `while/until`.
-<sup>[[link](#no-multiline-while-do)]</sup>
+  Не используйте do для многострочных циклов с `while/until`.
+  <sup>[[ссылка](#no-multiline-while-do)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   while x > 5 do
-    # body omitted
+    # код опущен для краткости
   end
 
   until x > 5 do
-    # body omitted
+    # код опущен для краткости
   end
 
-  # good
+  # хорошо
   while x > 5
-    # body omitted
+    # код опущен для краткости
   end
 
   until x > 5
-    # body omitted
+    # код опущен для краткости
   end
   ```
 
 * <a name="while-as-a-modifier"></a>
-  Favor modifier `while/until` usage when you have a single-line body.
-<sup>[[link](#while-as-a-modifier)]</sup>
+  Используйте `while/until` для однострочных выражений.
+  <sup>[[ссылка](#while-as-a-modifier)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   while some_condition
     do_something
   end
 
-  # good
+  # хорошо
   do_something while some_condition
   ```
 
 * <a name="until-for-negatives"></a>
-  Favor `until` over `while` for negative conditions.
-<sup>[[link](#until-for-negatives)]</sup>
+  Используйте `until` вместо `while` для условий c отрицанием.
+  <sup>[[ссылка](#until-for-negatives)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   do_something while !some_condition
 
-  # good
+  # хорошо
   do_something until some_condition
   ```
 
-* <a name="infinite-loop"></a>
-  Use `Kernel#loop` instead of `while/until` when you need an infinite loop.
-<sup>[[link](#infinite-loop)]</sup>
-
-    ```ruby
-    # bad
-    while true
-      do_something
-    end
-
-    until false
-      do_something
-    end
-
-    # good
-    loop do
-      do_something
-    end
-    ```
-
-* <a name="loop-with-break"></a>
-  Use `Kernel#loop` with `break` rather than `begin/end/until` or
-  `begin/end/while` for post-loop tests.
-<sup>[[link](#loop-with-break)]</sup>
-
-  ```Ruby
-  # bad
-  begin
-    puts val
-    val += 1
-  end while val < 0
-
-  # good
-  loop do
-    puts val
-    val += 1
-    break unless val < 0
-  end
-  ```
-
 * <a name="no-dsl-parens"></a>
-  Omit parentheses around parameters for methods that are part of an internal
-  DSL (e.g. Rake, Rails, RSpec), methods that have "keyword" status in Ruby
-  (e.g. `attr_reader`, `puts`) and attribute access methods. Use parentheses
-  around the arguments of all other method invocations.
-<sup>[[link](#no-dsl-parens)]</sup>
+  Не используйте скобки при вызове методов,
+  являющихся частью таких DSL, как Rake, Rails, RSpec, методов, имеющих
+  статус ключевого слова, например, `attr_reader`, `puts` и при вызове
+  аксессоров. Используйте скобки при вызове прочих методов.
+  <sup>[[ссылка](#no-dsl-parens)]</sup>
 
   ```Ruby
   class Person
     attr_reader :name, :age
 
-    # omitted
   end
 
   temperance = Person.new('Temperance', 30)
@@ -943,44 +868,48 @@ The Ruby Style Guide.
   ```
 
 * <a name="no-braces-opts-hash"></a>
-  Omit the outer braces around an implicit options hash.
-<sup>[[link](#no-braces-opts-hash)]</sup>
+  Не используйте фигурные скобки для ограничения хешей, передаваемых методу.
+  <sup>[[ссылка](#no-braces-opts-hash)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   user.set({ name: 'John', age: 45, permissions: { read: true } })
 
-  # good
+  # хорошо
   user.set(name: 'John', age: 45, permissions: { read: true })
   ```
 
 * <a name="no-dsl-decorating"></a>
-  Omit both the outer braces and parentheses for methods that are part of an
-  internal DSL.
-<sup>[[link](#no-dsl-decorating)]</sup>
+  `Обсудить с ребятами`
+  Не используйте фигурные скобки для ограничения хешей,
+  передаваемых методу, и скобки вокруг параметров для методов,
+  являющихся частью DSL.
+  <sup>[[ссылка](#no-dsl-decorating)]</sup>
 
   ```Ruby
   class Person < ActiveRecord::Base
-    # bad
+    # плохо
     validates(:name, { presence: true, length: { within: 1..10 } })
 
-    # good
+    # хорошо
     validates :name, presence: true, length: { within: 1..10 }
   end
   ```
 
 * <a name="no-args-no-parens"></a>
-  Omit parentheses for method calls with no arguments.
-<sup>[[link](#no-args-no-parens)]</sup>
+  `Обсудить с Василем`
+  Опускайте скобки при вызове метода без параметров.
+  <sup>[[ссылка](#no-args-no-parens)]</sup>
+
 
   ```Ruby
-  # bad
+  # плохо
   Kernel.exit!()
   2.even?()
   fork()
   'test'.upcase()
 
-  # good
+  # хорошо
   Kernel.exit!
   2.even?
   fork
@@ -988,96 +917,56 @@ The Ruby Style Guide.
   ```
 
 * <a name="single-line-blocks"></a>
-  Prefer `{...}` over `do...end` for single-line blocks.  Avoid using `{...}`
-  for multi-line blocks (multiline chaining is always ugly). Always use
-  `do...end` for "control flow" and "method definitions" (e.g. in Rakefiles and
-  certain DSLs).  Avoid `do...end` when chaining.
-<sup>[[link](#single-line-blocks)]</sup>
+  Используйте преимущественно `{...}` в случае
+  одностроных блоков, а `do...end` в случае многострочных блоков (многострочные
+  последовательности вызовов методов всегда выглядят ужасно). Старайтесь
+  применять `do...end` для логических операций и определений методов (например,
+  для Rakefile и некоторых DSL). Не используйте `do...end` в цепочках вызовов.
+  <sup>[[ссылка](#single-line-blocks)]</sup>
 
   ```Ruby
   names = ['Bozhidar', 'Steve', 'Sarah']
 
-  # bad
+  # плохо
   names.each do |name|
     puts name
   end
 
-  # good
+  # хорошо
   names.each { |name| puts name }
 
-  # bad
+  # плохо
   names.select do |name|
     name.start_with?('S')
   end.map { |name| name.upcase }
 
-  # good
+  # хорошо
   names.select { |name| name.start_with?('S') }.map { |name| name.upcase }
   ```
 
-  Some will argue that multiline chaining would look OK with the use of {...},
-  but they should ask themselves - is this code really readable and can the
-  blocks' contents be extracted into nifty methods?
-
-* <a name="block-argument"></a>
-  Consider using explicit block argument to avoid writing block literal that
-  just passes its arguments to another block. Beware of the performance impact,
-  though, as the block gets converted to a Proc.
-<sup>[[link](#block-argument)]</sup>
-
-  ```Ruby
-  require 'tempfile'
-
-  # bad
-  def with_tmp_dir
-    Dir.mktmpdir do |tmp_dir|
-      Dir.chdir(tmp_dir) { |dir| yield dir }  # block just passes arguments
-    end
-  end
-
-  # good
-  def with_tmp_dir(&block)
-    Dir.mktmpdir do |tmp_dir|
-      Dir.chdir(tmp_dir, &block)
-    end
-  end
-
-  with_tmp_dir do |dir|
-    puts "dir is accessible as a parameter and pwd is set: #{dir}"
-  end
-  ```
-
 * <a name="no-explicit-return"></a>
-  Avoid `return` where not required for flow of control.
-<sup>[[link](#no-explicit-return)]</sup>
+  `Обсудить с Василем`
+  Избегайте `return` там, где это не требуется для управления потоком выполнения.
+  <sup>[[link](#no-explicit-return)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   def some_method(some_arr)
     return some_arr.size
   end
 
-  # good
+  # хорошо
   def some_method(some_arr)
     some_arr.size
   end
   ```
 
 * <a name="no-self-unless-required"></a>
-  Avoid `self` where not required. (It is only required when calling a self
-  write accessor.)
-<sup>[[link](#no-self-unless-required)]</sup>
+  Используйте self для доступа к атрибутам модели в методах экземпляра класса
+  <sup>[[link](#no-self-unless-required)]</sup>
 
   ```Ruby
-  # bad
-  def ready?
-    if self.last_reviewed_at > self.last_updated_at
-      self.worker.update(self.content, self.options)
-      self.status = :in_progress
-    end
-    self.status == :verified
-  end
-
-  # good
+  # плохо
   def ready?
     if last_reviewed_at > last_updated_at
       worker.update(content, options)
@@ -1085,36 +974,14 @@ The Ruby Style Guide.
     end
     status == :verified
   end
-  ```
 
-* <a name="no-shadowing"></a>
-  As a corollary, avoid shadowing methods with local variables unless they are
-  both equivalent.
-<sup>[[link](#no-shadowing)]</sup>
-
-  ```Ruby
-  class Foo
-    attr_accessor :options
-
-    # ok
-    def initialize(options)
-      self.options = options
-      # both options and self.options are equivalent here
+  # хорошо
+  def ready?
+    if self.last_reviewed_at > self.last_updated_at
+      self.worker.update(self.content, self.options)
+      self.status = :in_progress
     end
-
-    # bad
-    def do_something(options = {})
-      unless options[:when] == :later
-        output(self.options[:message])
-      end
-    end
-
-    # good
-    def do_something(params = {})
-      unless params[:when] == :later
-        output(options[:message])
-      end
-    end
+    self.status == :verified
   end
   ```
 
