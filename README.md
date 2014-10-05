@@ -48,28 +48,7 @@ The Ruby Style Guide.
   end
   ```
 
-1.3. <a name="no-semicolon"></a> Не используйте `;` для разделения инструкций и
-  выражений. Отсюда следует, что каждая инструкция должна занимать свою отдельную строку.
-  <sup>[[ссылка](#no-semicolon)]</sup>
-
-  ```Ruby
-  # плохо
-  puts 'foobar'; # лишняя точка с запятой
-
-  puts 'foo'; puts 'bar' # two expressions on the same line
-
-  # хорошо
-  puts 'foobar'
-
-  puts 'foo'
-  puts 'bar'
-
-  puts 'foo', 'bar' # частное правило - аргументы puts можно перечислять через запятую
-  ```
-
-  !Выбросить!
-
-1.4. <a name="no-single-line-methods"></a>
+1.3. <a name="no-single-line-methods"></a>
   Избегайте методов в одну строку, за исключением пустых методов.
 <sup>[[link](#no-single-line-methods)]</sup>
 
@@ -93,14 +72,12 @@ The Ruby Style Guide.
 
   # хорошо
   def no_op; end
+
+  # можно - return логически связан с предыдущим выражением
+  render_404; return
   ```
 
-  !Никогда не использовать точку с запятой!
-  кроме
-    render_404; return
-
-
-1.5. <a name="spaces-operators"></a> Вставляйте пробелы вокруг операторов, после
+1.4. <a name="spaces-operators"></a> Вставляйте пробелы вокруг операторов, после
   запятых, двоеточий и точек с запятыми,  вокруг `{` и перед `}`.
   <sup>[[ссылка](#spaces-operators)]</sup>
 
@@ -149,7 +126,7 @@ The Ruby Style Guide.
 
   Хэши - с пробелами по бокам, пустые без пробелов ({}).
 
-1.6. <a name="no-spaces-braces"></a> Не используйте пробел после `(`, `[` или перед `]`, `)`.
+1.5. <a name="no-spaces-braces"></a> Не используйте пробел после `(`, `[` или перед `]`, `)`.
   <sup>[[ссылка](#no-spaces-braces)]</sup>
 
   ```Ruby
@@ -157,7 +134,7 @@ The Ruby Style Guide.
   [1, 2, 3].size
   ```
 
-1.7. <a name="no-space-bang"></a> Не используйте пробел после `!`.
+1.6. <a name="no-space-bang"></a> Не используйте пробел после `!`.
   <sup>[[ссылка](#no-space-bang)]</sup>
 
   ```Ruby
@@ -168,7 +145,7 @@ The Ruby Style Guide.
   !something
   ```
 
-1.8. <a name="no-space-inside-range-literals"></a>Записывайте литералы диапазонов
+1.7. <a name="no-space-inside-range-literals"></a>Записывайте литералы диапазонов
   без пробелов.
   <sup>[[link](#no-space-inside-range-literals)]</sup>
 
@@ -182,14 +159,13 @@ The Ruby Style Guide.
     'a'..'z'
     ```
 
-1.9. <a name="indent-conditional-assignment"></a>
-  Do not assign result of 'if' expression. Assigning 'case' expression results is permitted.
-  When assigning the result of a 'case' conditional expression to a variable,
-  preserve the usual alignment of its branches.
+1.8. <a name="indent-conditional-assignment"></a>
+  Не присваивайте результат выражения 'if'. Можно присваиваить результат выражения 'case'.
+  Во втором случае сохраняйте обычное выравнивание ветвей 'case'.
 <sup>[[link](#indent-conditional-assignment)]</sup>
 
   ```Ruby
-  # bad - pretty convoluted
+  # плохо
   kind = case year
   when 1850..1889 then 'Blues'
   when 1890..1909 then 'Ragtime'
@@ -199,14 +175,14 @@ The Ruby Style Guide.
   else 'Jazz'
   end
 
-  # bad - 'if' operator
+  # плохо - оператор 'if'
   result = if some_cond
     calc_something
   else
     calc_something_else
   end
 
-  # good
+  # хорошо
   kind = case year
          when 1850..1889 then 'Blues'
          when 1890..1909 then 'Ragtime'
@@ -216,14 +192,14 @@ The Ruby Style Guide.
          else 'Jazz'
          end
 
-  # bad
+  # плохо
   result = if some_cond
              calc_something
            else
              calc_something_else
            end
 
-  # bad
+  # плохо
   kind =
     case year
     when 1850..1889 then 'Blues'
@@ -233,17 +209,9 @@ The Ruby Style Guide.
     when 1940..1950 then 'Bebop'
     else 'Jazz'
     end
-
-    #bad
-  result =
-    if some_cond
-      calc_something
-    else
-      calc_something_else
-    end
   ```
 
-1.10. <a name="empty-lines-between-methods"></a> Используйте пустые строки для отбивки методов друг от друга и
+1.9. <a name="empty-lines-between-methods"></a> Используйте пустые строки для отбивки методов друг от друга и
   выделения логических частей кода.
   <sup>[[ссылка](#empty-lines-between-methods)]</sup>
 
@@ -261,7 +229,7 @@ The Ruby Style Guide.
   end
   ```
 
-1.11. <a name="no-trailing-params-comma"></a> Не ставьте запятую после последнего параметра в вызове метода.
+1.10. <a name="no-trailing-params-comma"></a> Не ставьте запятую после последнего параметра в вызове метода.
   <sup>[[ссылка](#no-trailing-params-comma)]</sup>
 
   ```Ruby
@@ -279,12 +247,11 @@ The Ruby Style Guide.
   some_method(size, count, color)
   ```
 
-1.12. <a name="spaces-around-equals"></a>
+1.11. <a name="spaces-around-equals"></a>
   `Обсудить с Василем`
-  Вставляйте пробелы вокруг оператора присваивания `=`, когда
+  Не вставляйте пробелы вокруг оператора присваивания `=`, когда
   назначаете параметрам метода значения по умолчанию:
   <sup>[[ссылка](#spaces-around-equals)]</sup>
-
 
   ```Ruby
   # хорошо
@@ -293,7 +260,7 @@ The Ruby Style Guide.
   end
   ```
 
-1.13. <a name="no-trailing-backslash"></a>
+1.12. <a name="no-trailing-backslash"></a>
   Не используйте символ продления строки кода `\`.
   <sup>[[ссылка](#no-trailing-backslash)]</sup>
 
@@ -312,7 +279,7 @@ The Ruby Style Guide.
 
   ```
 
-1.14. <a name="consistent-multi-line-chains"></a>
+1.13. <a name="consistent-multi-line-chains"></a>
   Используйте единый стиль многострочных цепочек
   вызова методов: точка перед вызовом метода в начале строки.
   <sup>[[ссылка](#consistent-multi-line-chains)]</sup>
@@ -328,7 +295,7 @@ The Ruby Style Guide.
        .four
     ```
 
-1.15. <a name="no-double-indent"></a> Выравнивайте параметры вызова метода, если
+1.14. <a name="no-double-indent"></a> Выравнивайте параметры вызова метода, если
   вызов занимает более одной строки. Если выравнивание невозможно из-за
   ограничений на длину строки, то используйте одинарный отступ.
   <sup>[[ссылка](#no-double-indent)]</sup>
@@ -367,7 +334,7 @@ The Ruby Style Guide.
   end
   ```
 
-1.16. <a name="align-multiline-arrays"></a>
+1.15. <a name="align-multiline-arrays"></a>
   Выравнивайте элементы литералов массива,
   если они занимают несколько строк.
   <sup>[[ссылка](#align-multiline-arrays)]</sup>
@@ -393,9 +360,10 @@ The Ruby Style Guide.
                'Baked beans', 'Spam', 'Spam', 'Spam', 'Spam', 'Spam']
   ```
 
-1.17. <a name="rdoc-conventions"></a>
+1.16. <a name="rdoc-conventions"></a>
   Используйте устоявшиеся правила RDoc для описания интерфейсов. Не отделяйте
   блок комментария от начала определения метода `def` пустой строкой.
+  <sup>[[ссылка](#rdoc-conventions)]</sup>
 
   ```Ruby
   # Configuration options are:
@@ -409,13 +377,11 @@ The Ruby Style Guide.
     ...
   ```
 
-  <sup>[[ссылка](#rdoc-conventions)]</sup>
-
-1.18. <a name="no-trailing-whitespace"></a>
+1.17. <a name="no-trailing-whitespace"></a>
   Не оставляйте пробелы в конце строки.
   <sup>[[ссылка](#no-trailing-whitespace)]</sup>
 
-1.19. <a name="no-block-comments"></a>
+1.18. <a name="no-block-comments"></a>
   Не пользуйтесь блочными комментариями. Их нельзя разместить на необходимом уровне отступа.
   К тому же они не так читаемы, как обычные.
   <sup>[[ссылка](#no-block-comments)]</sup>
@@ -711,7 +677,7 @@ The Ruby Style Guide.
 
 2.16. <a name="single-line-blocks"></a>
   Используйте преимущественно `{...}` в случае
-  одностроных блоков, а `do...end` в случае многострочных блоков (многострочные
+  однострочных блоков, и `do...end` в случае многострочных блоков (многострочные
   последовательности вызовов методов всегда выглядят ужасно). Старайтесь
   применять `do...end` для логических операций и определений методов (например,
   для Rakefile и некоторых DSL). Не используйте `do...end` в цепочках вызовов.
