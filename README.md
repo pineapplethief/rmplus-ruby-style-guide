@@ -778,7 +778,7 @@ The Ruby Style Guide.
   ```
 
 2.19. <a name="safe-assignment-in-condition"></a>
-  Don't use the return value of `=` (an assignment) in conditional expressions
+  Не используйте значения, возвращаемые оператором присваивания `=` в условных выражениях.
 <sup>[[link](#safe-assignment-in-condition)]</sup>
 
   ```Ruby
@@ -803,30 +803,29 @@ The Ruby Style Guide.
   ```
 
 2.20. <a name="double-pipe-for-uninit"></a>
-  Use `||=` to initialize variables only if they're not already initialized.
+   Используйте `||=` для инициализации непроинициализированных переменных.
 <sup>[[link](#double-pipe-for-uninit)]</sup>
 
   ```Ruby
-  # bad
+  # плохо
   name = name ? name : 'Bozhidar'
 
-  # bad
+  # плохо
   name = 'Bozhidar' unless name
 
-  # good - set name to Bozhidar, only if it's nil or false
+  # хорошо - присваивание происходит только, если name - nil или false
   name ||= 'Bozhidar'
   ```
 
 2.21. <a name="no-double-pipes-for-bools"></a>
-  Don't use `||=` to initialize boolean variables. (Consider what would happen
-  if the current value happened to be `false`.)
+  Не используйте `||=` для инициализации булевых переменных.
 <sup>[[link](#no-double-pipes-for-bools)]</sup>
 
   ```Ruby
-  # bad - would set enabled to true even if it was false
+  # плохо - присвоит true даже если переменная была false
   enabled ||= true
 
-  # good
+  # хорошо
   enabled = true if enabled.nil?
   ```
 
